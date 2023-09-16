@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER
         },
         vaule: {
-            type: Sequqlize.DOUBLE
+            type: Sequelize.DOUBLE
         },
         Importd: {
             type: Sequelize.BOOLEAN
