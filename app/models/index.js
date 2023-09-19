@@ -19,6 +19,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.garage = require("./item.model.js")(sequelize, Sequelize);
+db.garage = require("./CAR.model.js")(sequelize, Sequelize);
 
 module.exports = db;
