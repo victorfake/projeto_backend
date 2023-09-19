@@ -19,5 +19,5 @@ module.exports = app => {
 
     router.delete("/", garage.deleteALL);
 
-    app.use("/api/items", router);
+    app.use("/api/garage", router);
 };

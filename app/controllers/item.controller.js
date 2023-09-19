@@ -3,19 +3,19 @@ const Item = db.garage;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
-    if (!req.body.name){
+    if (!req.body.brand) {
         res.status(400).send({
             message: "O conteúdo não pode ser vazio!"
         });
         return;
     }
 
-    const item = {
-         brand: req.body.brand, //variavel para a marcar do carro ex:Fiat
+    const garage = {
+        brand: req.body.brand, //variavel para a marcar do carro ex:Fiat
         model: req.body.model, //variavel para o modelo do carro ex:Uno
         Year: req.body.Year, //variavel pra o ano de fabricação do carro ex:2000
         vaule: req.body.vaule, //variavel para o preço do carro ex: $300000.00
-        Importd: req.body.Importd ? req.body.Importd : False //variavel para informar se o carro e impordo ou não
+        Importd: req.body.Importd ? req.body.Importd : false //variavel para informar se o carro e impordo ou não
     };
 
     Item.create(garage)

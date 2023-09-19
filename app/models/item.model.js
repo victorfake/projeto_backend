@@ -1,5 +1,3 @@
-const { garage } = require(".");
-
 module.exports = (sequelize, Sequelize) => {
     const Item = sequelize.define("garage", {
         brand: {
@@ -19,5 +17,5 @@ module.exports = (sequelize, Sequelize) => {
         }
     });
 
-    return garage;
-}
+    return Item;
+};

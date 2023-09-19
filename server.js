@@ -17,7 +17,7 @@ const db = require("./app/models");
 
 db.sequelize.sync()
 .then(()=>{
-console.log("Banco sincronizado.");
+ console.log("Banco sincronizado.");
 })
 .catch((err)=>{
     console.log("Falha ao acessar o banco de dados:"+ err.message);
