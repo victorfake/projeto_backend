@@ -1,5 +1,5 @@
 module.exports = app => {
-    const garage = require("../controllers/item.controller.js");
+    const garage = require("../controllers/CAR.controller.js");
 
     var router = require("express").Router();
 
