@@ -1,5 +1,5 @@
 const db = require("../models");
-const Item = db.garage;
+const Car = db.garage;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
         Importd: req.body.Importd ? req.body.Importd : false //variavel para informar se o carro e impordo ou não
     };
 
-    Item.create(garage)
+    Car.create(garage)
 
     .then(data => {
         res.send(data);
@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     .catch(err => {
         res.status(500).send({
             message:
-            err.message || "Algum erro ocorreu ao tentar criar item."
+            err.message || "Algum erro ocorreu ao tentar registra o carro."
         });
     });
 };
@@ -35,7 +35,7 @@ exports.findAll = (req, res) =>{
     const brand = req.query.brand;
     var condition = brand ? { brand: { [Op.iLike]: `%${brand}` } } : null;
 
-    Item.findALl({ where: condition })
+    Car.findALl({ where: condition })
         .then(data => {
             res.send(data);
         })
@@ -51,7 +51,7 @@ exports.findAll = (req, res) =>{
     const model = req.query.model;
     var condition = model ? { brand: { [Op.iLike]: `%${model}` } } : null;
 
-    Item.findALl({ where: condition })
+    Car.findALl({ where: condition })
         .then(data => {
             res.send(data);
         })
@@ -66,7 +66,7 @@ exports.findAll = (req, res) =>{
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Item.findByPk(id)
+    Car.findByPk(id)
     .then(data => {
         if (data) {
             res.send(data);
@@ -86,7 +86,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Item.update(req.body, {
+    Car.update(req.body, {
         where: { id : id }
     })
     .then(num => {
@@ -110,17 +110,17 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Item.destroy({
+    Car.destroy({
         where: { id: id }
     })
     .then(num => {
         if  (num == 1) {
             res.send({
-                message: "O item foi apagado com sucesso."
+                message: "O veiculo foi apagado com sucesso."
             });
         } else {
             res.send({
-                message: `Não foi possivel apagar o item com o id=${id}.`
+                message: `Não foi possivel apagar o veiculo com o id=${id}.`
             });
         }
     })
@@ -132,7 +132,7 @@ exports.delete = (req, res) => {
 };
 
 exports.deleteALL = (req, res) => {
-    Item.destroy({
+    Car.destroy({
         where: {},
         truncate: false
     })
@@ -148,7 +148,7 @@ exports.deleteALL = (req, res) => {
 };
 
 exports.findAllImportd = (req, res) => {
-    Item.findAll({ where: {Importd: true} } )
+    Car.findAll({ where: {Importd: true} } )
     .then(data => {
         res.send(data);
     })
