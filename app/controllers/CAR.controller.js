@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     .catch(err => {
         res.status(500).send({
             message:
-            err.message || "Algum erro ocorreu ao tentar registra o carro."
+            err.message || "Algum erro ocorreu ao tentar registra o veiculo."
         });
     });
 };
@@ -35,7 +35,7 @@ exports.findAll = (req, res) =>{
     const brand = req.query.brand;
     var condition = brand ? { brand: { [Op.iLike]: `%${brand}` } } : null;
 
-    Car.findALl({ where: condition })
+    Car.findAll({ where: condition })
         .then(data => {
             res.send(data);
         })
@@ -49,7 +49,7 @@ exports.findAll = (req, res) =>{
 
 exports.findAll = (req, res) =>{
     const model = req.query.model;
-    var condition = model ? { brand: { [Op.iLike]: `%${model}` } } : null;
+    var condition = model ? { model: { [Op.iLike]: `%${model}` } } : null;
 
     Car.findALl({ where: condition })
         .then(data => {
