@@ -148,4 +148,16 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-exports.findAllRemuneration = (req, res) =>{}
+exports.findAllRemuneration = (req, res) =>{
+    Seller.findAll( { where: {Remuneration: true} } )
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+        message:
+        err.message || "Algum erro ocorreu ao tentar pesquisar os registro dos funcionarios Remunerados."
+        });
+    });
+
+};

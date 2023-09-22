@@ -155,7 +155,7 @@ exports.findAllImportd = (req, res) => {
     .catch(err => {
         res.status(500).send({
             message:
-            err.message || "Algum erro ocorreu ao tentar pesquisar todos os veiculos Importd. "
+            err.message || "Algum erro ocorreu ao tentar pesquisar todos os veiculos Impostados. "
         });
     });
 };
