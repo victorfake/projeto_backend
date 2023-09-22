@@ -49,7 +49,7 @@ exports.findAll = (req, res) =>{
 
 exports.findAll = (req, res) =>{
     const email = req.query.email;
-    var condition = email ? { model: { [Op.ilike]: `%${email}` } }: null;
+    var condition = email ? { email: { [Op.iLike]: `%${email}` } }: null;
 
     Seller.findAll({ where: condition })
         .then(data => {
@@ -77,7 +77,7 @@ exports.findOne = (req, res) =>{
         };
     })
 
-        .catch(rr => {
+        .catch(err => {
             res.status(500).send({
                 message: "Algum erro ocorreu ao tentar encontra o registro de funcionario com o id=" + id
             })
