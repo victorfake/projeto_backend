@@ -25,6 +25,8 @@ db.sequelize.sync()
 
 require("./app/routes/CAR.routes.js")(app);
 
+require("./app/routes/SELLER.routes.js")(app);
+
 app.get("/", (req,res) => {
     res.json({message: 'Hello World!'})
 });

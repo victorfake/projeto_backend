@@ -20,5 +20,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.garage = require("./CAR.model.js")(sequelize, Sequelize);
+db.employee = require("./SELLER.model.js")(sequelize, Sequelize);
 
 module.exports = db;
