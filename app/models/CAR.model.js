@@ -1,19 +1,24 @@
 module.exports = (sequelize, Sequelize) => {
     const Car = sequelize.define("garage", {
         brand: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         },
         model: {
-            type: Sequelize.STRING
+            type: Sequelize.STRING,
+            allowNull: false
         },
         Year: {
-            type: Sequelize.INTEGER
+            type: Sequelize.INTEGER,
+            allowNull: false
         },
         vaule: {
-            type: Sequelize.DOUBLE
+            type: Sequelize.DOUBLE,
+            allowNull: false
         },
         Importd: {
-            type: Sequelize.BOOLEAN
+            type: Sequelize.BOOLEAN,
+            allowNull: false
         }
     });
 

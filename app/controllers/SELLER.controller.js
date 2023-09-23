@@ -117,7 +117,7 @@ exports.delete = (req, res) => {
     .then(num => {
         if (num == 1) {
         res.send({
-            message: "O resgistro do funcionario com sucesso."
+            message: "O resgistro do funcionario foi apagado com sucesso."
         });
     } else {
         res.send({

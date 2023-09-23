@@ -1,3 +1,5 @@
+const { DataTypes } = require("sequelize");
+
 module.exports = (sequelize, Sequelize) => {
     const Seller = sequelize.define("employee", {
         name: {
@@ -14,6 +16,13 @@ module.exports = (sequelize, Sequelize) => {
         },
         Remuneration: {
             type: Sequelize.BOOLEAN
+        },
+        id_Car: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: Car,
+                key: 'id'
+            }
         }
     });
 
