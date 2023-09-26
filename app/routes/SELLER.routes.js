@@ -5,9 +5,9 @@ module.exports = app => {
 
     router.post("/", employee.create);
 
-    router.get("/", employee.findAll);
+    router.get("/find/:name", employee.findOneNames);
 
-    router.get("/", employee.findAll);
+    router.get("/find/email", employee.findAllEmail);
 
     router.get("/:id", employee.findOne);
 

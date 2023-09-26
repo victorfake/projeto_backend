@@ -31,11 +31,10 @@ exports.create = (req, res) => {
     });
 };
 
-exports.findAll = (req, res) =>{
-    const name = req.query.name;
-    var condition = name ? { name: {[Op.iLike]: `%${name}` } } : null;
+exports.findOneNames = (req, res) =>{
+    const name = req.params.name;
 
-    Seller.findAll({ where: condition })
+    Seller.findOne(name)
         .then(data => {
             res.send(data);
         })
@@ -47,7 +46,7 @@ exports.findAll = (req, res) =>{
         });
 };
 
-exports.findAll = (req, res) =>{
+exports.findAllEmail = (req, res) =>{
     const email = req.query.email;
     var condition = email ? { email: { [Op.iLike]: `%${email}` } }: null;
 
