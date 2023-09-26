@@ -1,5 +1,3 @@
-const { DataTypes } = require("sequelize");
-
 module.exports = (sequelize, Sequelize) => {
     const Seller = sequelize.define("employee", {
         name: {
@@ -18,9 +16,9 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.BOOLEAN
         },
         id_Car: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             references: {
-                model: Car,
+                model: "cars",
                 key: 'id'
             }
         }

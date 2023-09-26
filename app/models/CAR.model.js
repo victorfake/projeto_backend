@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Car = sequelize.define("garage", {
+    const Car = sequelize.define("cars", {
         brand: {
             type: Sequelize.STRING,
             allowNull: false

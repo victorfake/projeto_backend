@@ -1,5 +1,5 @@
 const db = require("../models");
-const Car = db.garage;
+const Car = db.cars;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -10,7 +10,7 @@ exports.create = (req, res) => {
         return;
     }
 
-    const garage = {
+    const cars = {
         brand: req.body.brand, //variavel para a marcar do carro ex:Fiat
         model: req.body.model, //variavel para o modelo do carro ex:Uno
         Year: req.body.Year, //variavel pra o ano de fabricação do carro ex:2000
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
         Importd: req.body.Importd ? req.body.Importd : false //variavel para informar se o carro e impordo ou não
     };
 
-    Car.create(garage)
+    Car.create(cars)
 
     .then(data => {
         res.send(data);

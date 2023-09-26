@@ -1,23 +1,23 @@
 module.exports = app => {
-    const garage = require("../controllers/CAR.controller.js");
+    const cars = require("../controllers/CAR.controller.js");
 
     var router = require("express").Router();
 
-    router.post("/", garage.create);
+    router.post("/", cars.create);
 
-    router.get("/", garage.findAll);
+    router.get("/", cars.findAll);
 
-    router.get("/", garage.findAll);
+    router.get("/", cars.findAll);
 
-    router.get("/:id", garage.findOne);
+    router.get("/:id", cars.findOne);
 
-    router.get("/Importd", garage.findAllImportd);
+    router.get("/Importd", cars.findAllImportd);
 
-    router.put("/:id", garage.update);
+    router.put("/:id", cars.update);
 
-    router.delete("/:id", garage.delete);
+    router.delete("/:id", cars.delete);
 
-    router.delete("/", garage.deleteALL);
+    router.delete("/", cars.deleteALL);
 
-    app.use("/api/garage", router);
+    app.use("/api/cars", router);
 };
