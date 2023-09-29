@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     const cars = {
         brand: req.body.brand, //variavel para a marcar do carro ex:Fiat
         model: req.body.model, //variavel para o modelo do carro ex:Uno
-        Year: req.body.Year, //variavel pra o ano de fabricação do carro ex:2000
+        quantity: req.body.quantity, //variavel pra o ano de fabricação do carro ex:2000
         vaule: req.body.vaule, //variavel para o preço do carro ex: $300000.00
         Importd: req.body.Importd ? req.body.Importd : false //variavel para informar se o carro e impordo ou não
     };
@@ -31,36 +31,26 @@ exports.create = (req, res) => {
     });
 };
 
-exports.findAll = (req, res) =>{
-    const brand = req.query.brand;
-    var condition = brand ? { brand: { [Op.iLike]: `%${brand}` } } : null;
-
-    Car.findAll({ where: condition })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Algum erro ocorreu ao tentar pesquisar as marcas de veiculos"
-            });
-        });
-};
-
-exports.findAll = (req, res) =>{
+exports.findOneModel = (req, res) =>{
     const model = req.query.model;
     var condition = model ? { model: { [Op.iLike]: `%${model}` } } : null;
 
-    Car.findALl({ where: condition })
-        .then(data => {
+    Car.findOne({ where: {model} })
+    .then(data => {
+        if (data) {
             res.send(data);
-        })
+        } else {
+            res.status(400).send({
+                message: `Não foi possivel encontra os veiculos do modelo=${model}.`
+            });
+        };
+    })
+
         .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Algum erro ocorreu ao tentar pesquisar os modelos de veiculos"
-            });
-        });
+                message: "Algum erro ocorreu ao tentar encontra os veiculos do modelo=" + model
+            })
+        })
 };
 
 exports.findOne = (req, res) => {
@@ -155,7 +145,7 @@ exports.findAllImportd = (req, res) => {
     .catch(err => {
         res.status(500).send({
             message:
-            err.message || "Algum erro ocorreu ao tentar pesquisar todos os veiculos Impostados. "
+            err.message || "Algum erro ocorreu ao tentar pesquisar todos os veiculos Importados. "
         });
     });
 };

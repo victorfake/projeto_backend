@@ -9,7 +9,7 @@ module.exports = app => {
 
     router.get("/:id", employees.findOneID);
 
-    router.get("/Remuneration", employees.findAllRemuneration);
+    router.get("/find/Remuneration", employees.findAllRemuneration);
 
     router.put("/:id", employees.update);
 

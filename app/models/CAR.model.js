@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        Year: {
+        quantity: {
             type: Sequelize.INTEGER,
             allowNull: false
         },

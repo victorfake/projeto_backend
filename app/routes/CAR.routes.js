@@ -5,19 +5,19 @@ module.exports = app => {
 
     router.post("/", cars.create);
 
-    router.get("/", cars.findAll);
+    router.get("/findbrand/:brand", cars.findAllBrand);
 
-    router.get("/", cars.findAll);
+    router.get("/findmodel/:model", cars.findOneModel);
 
     router.get("/:id", cars.findOne);
 
-    router.get("/Importd", cars.findAllImportd);
+    router.get("/find/Importd", cars.findAllImportd);
 
     router.put("/:id", cars.update);
 
     router.delete("/:id", cars.delete);
 
-    router.delete("/", cars.deleteALL);
+    router.delete("/deleteall", cars.deleteALL);
 
     app.use("/api/cars", router);
 };

@@ -34,9 +34,7 @@ exports.create = (req, res) => {
 exports.findOneNames = (req, res) =>{
     const name = req.params.name;
 
-    Seller.findOne({
-        where: {name}
-    })
+    Seller.findOne({ where: {name} })
     .then(data => {
         if (data) {
             res.send(data);
