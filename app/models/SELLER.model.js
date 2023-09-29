@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Seller = sequelize.define("employee", {
+    const Seller = sequelize.define("employees", {
         name: {
             type: Sequelize.STRING
         },
@@ -15,13 +15,7 @@ module.exports = (sequelize, Sequelize) => {
         Remuneration: {
             type: Sequelize.BOOLEAN
         },
-        id_Car: {
-            type: Sequelize.INTEGER,
-            references: {
-                model: "cars",
-                key: 'id'
-            }
-        }
+       
     });
 
     return Seller;

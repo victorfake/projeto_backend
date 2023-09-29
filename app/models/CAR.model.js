@@ -19,6 +19,14 @@ module.exports = (sequelize, Sequelize) => {
         Importd: {
             type: Sequelize.BOOLEAN,
             allowNull: false
+        },
+
+        id_Seller: {
+            type: Sequelize.INTEGER,
+            references: {
+                model: "employees",
+                key: 'id'
+            }
         }
     });
 

@@ -1,5 +1,5 @@
 const db = require("../models");
-const Seller = db.employee;
+const Seller = db.employees;
 const Op = db.Sequelize.Op;
 
 exports.create = (req, res) => {
@@ -10,7 +10,7 @@ exports.create = (req, res) => {
         return;
     }
 
-    const employee = {
+    const employees = {
         name: req.body.name,
         email: req.body.email,
         number: req.body.number,
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
         Remuneration: req.body.Remuneration ? req.body.Remuneration : false
     };
 
-    Seller.create(employee)
+    Seller.create(employees)
 
     .then(data => {
         res.send(data);
@@ -34,35 +34,27 @@ exports.create = (req, res) => {
 exports.findOneNames = (req, res) =>{
     const name = req.params.name;
 
-    Seller.findOne(name)
-        .then(data => {
+    Seller.findOne({
+        where: {name}
+    })
+    .then(data => {
+        if (data) {
             res.send(data);
-        })
+        } else {
+            res.status(400).send({
+                message: `Não foi possivel encontra o funcionario com o nome${name}.`
+            });
+        };
+    })
+
         .catch(err => {
             res.status(500).send({
-                message:
-                    err.message || "Algum erro ocorreu ao tentar pesquisar o nome do funcionario."
-            });
-        });
-};
-
-exports.findAllEmail = (req, res) =>{
-    const email = req.query.email;
-    var condition = email ? { email: { [Op.iLike]: `%${email}` } }: null;
-
-    Seller.findAll({ where: condition })
-        .then(data => {
-            res.send(data);
+                message: "Algum erro ocorreu ao tentar encontra o registro de funcionario com o nome " + name
+            })
         })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                err.message || "Algum erro ocorreu ao tentar pesquisar o email dos funcionarios."
-            });
-        });
 };
 
-exports.findOne = (req, res) =>{
+exports.findOneID = (req, res) =>{
     const id = req.params.id;
 
     Seller.findByPk(id)
