@@ -40,7 +40,7 @@ exports.findOneNames = (req, res) =>{
             res.send(data);
         } else {
             res.status(400).send({
-                message: `Não foi possivel encontra o funcionario com o nome${name}.`
+                message: `Não foi possivel encontra o funcionario com o nome ${name}.`
             });
         };
     })

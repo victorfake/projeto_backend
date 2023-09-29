@@ -32,8 +32,8 @@ exports.create = (req, res) => {
 };
 
 exports.findOneModel = (req, res) =>{
-    const model = req.query.model;
-    var condition = model ? { model: { [Op.iLike]: `%${model}` } } : null;
+    const model = req.params.model;
+    
 
     Car.findOne({ where: {model} })
     .then(data => {

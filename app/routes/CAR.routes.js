@@ -5,8 +5,6 @@ module.exports = app => {
 
     router.post("/", cars.create);
 
-    router.get("/findbrand/:brand", cars.findAllBrand);
-
     router.get("/findmodel/:model", cars.findOneModel);
 
     router.get("/:id", cars.findOne);
@@ -17,7 +15,7 @@ module.exports = app => {
 
     router.delete("/:id", cars.delete);
 
-    router.delete("/deleteall", cars.deleteALL);
+    router.delete("/delete/all", cars.deleteALL);
 
     app.use("/api/cars", router);
 };
