@@ -5,7 +5,9 @@ module.exports = app => {
 
     router.post("/", cars.create);
 
-    router.get("/findmodel/:model", cars.findOneModel);
+    router.get("/findbrand/:brand", cars.findByBrand);
+
+    router.get("/findmodel/:model", cars.findByModel);
 
     router.get("/:id", cars.findOne);
 

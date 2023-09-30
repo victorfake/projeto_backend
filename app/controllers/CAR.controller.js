@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     const cars = {
         brand: req.body.brand, //variavel para a marcar do carro ex:Fiat
         model: req.body.model, //variavel para o modelo do carro ex:Uno
-        quantity: req.body.quantity, //variavel pra o ano de fabricação do carro ex:2000
+        year: req.body.year, //variavel pra o ano de fabricação do carro ex:2000
         vaule: req.body.vaule, //variavel para o preço do carro ex: $300000.00
         Importd: req.body.Importd ? req.body.Importd : false //variavel para informar se o carro e impordo ou não
     };
@@ -30,27 +30,68 @@ exports.create = (req, res) => {
         });
     });
 };
-
-exports.findOneModel = (req, res) =>{
-    const model = req.params.model;
+exports.findByBrand = (req, res) =>{
+    const brand = req.params.brand;
     
-
-    Car.findOne({ where: {model} })
+    Car.findAll( {where: {brand:{[Op.like]:`%${brand}%`}}})
     .then(data => {
         if (data) {
             res.send(data);
         } else {
-            res.status(400).send({
-                message: `Não foi possivel encontra os veiculos do modelo=${model}.`
+            res.status(404).send({
+                message: `Não foi possível encontrar o veiculo com a marca=${brand}.` 
             });
         };
     })
-
         .catch(err => {
             res.status(500).send({
-                message: "Algum erro ocorreu ao tentar encontra os veiculos do modelo=" + model
-            })
-        })
+                message: "Algum erro ocorreu ao tentar encontrar o veiculo com a marca=" + brand
+            });
+        });
+};
+
+exports.findByModel = (req, res) =>{
+    const model = req.params.model;
+    
+    Car.findAll( {where: {model:{[Op.like]:`%${model}%`}}})
+    .then(data => {
+        if (data) {
+            res.send(data);
+        } else {
+            res.status(404).send({
+                message: `Não foi possível encontrar o veiculo com o modelo=${model}.` 
+            });
+        };
+    })
+        .catch(err => {
+            res.status(500).send({
+                message: "Algum erro ocorreu ao tentar encontrar o veiculo com o model=" + model
+            });
+        });
+};
+
+exports.update = (req, res) => {
+    const id = req.params.id;
+
+    Car.update(req.body, {
+        where: { id : id }
+    })
+    .then(num => {
+        if (num == 1) {
+            res.send({
+                message: "O veiculo foi atalizado."
+            });
+        } else {
+            res.send({
+                message: `Não foi possivel atalizar o veiculo com o id=${id}.`
+            });
+        }
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: "Algum erro ocorreu ao tentar atalizar o veiculo com o id=" + id
+        });
+    });
 };
 
 exports.findOne = (req, res) => {
