@@ -22,4 +22,11 @@ db.sequelize = sequelize;
 db.cars = require("./CAR.model.js")(sequelize, Sequelize);
 db.employees = require("./SELLER.model.js")(sequelize, Sequelize);
 
+db.employees.hasMany(db.cars,{as:'cars'})
+
+db.cars.belongsTo(db.employees,{
+    foreignKey:'carsId',
+    as:'employees'
+})
+
 module.exports = db;

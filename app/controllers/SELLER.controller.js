@@ -149,4 +149,40 @@ exports.findAllRemuneration = (req, res) =>{
         });
     });
 
+    exports.findOneCars = (res, req) =>{
+        const id = req.params.id;
+
+    Seller.findByPk(id, {include: 'cars'})
+    .then(data => {
+        if (data) {
+            res.send(data);
+        } else {
+            res.status(400).send({
+                message: `Não foi possivel encontra o funcionario com o id=${id}.`
+            });
+        };
+    })
+
+        .catch(err => {
+            res.status(500).send({
+                message: "Algum erro ocorreu ao tentar encontra o registro de funcionario com o id=" + id
+            })
+        })
+};
+
+exports.findAllAndCars = (res, req) => {
+
+    Seller.findAll({
+        include: 'cars'
+    })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+            err.message || "Algum erro ao tentar pesquisar o vendedor do veiculo"
+        })
+    })
+}
 };

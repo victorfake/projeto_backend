@@ -17,5 +17,9 @@ module.exports = app => {
 
     router.delete("/delete/all", employees.deleteAll);
 
+    router.get("/findcars", employees.findOneCars);
+
+    router.get("/findall/cars", employees.findAllAndCars);
+
     app.use("/api/employees", router);
 };
