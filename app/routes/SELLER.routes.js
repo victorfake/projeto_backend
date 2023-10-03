@@ -7,7 +7,7 @@ module.exports = app => {
 
     router.get("/findname/:name", employees.findOneNames);
 
-    router.get("/:id", employees.findOneID);
+    router.get("/:id", employees.findOneId);
 
     router.get("/find/Remuneration", employees.findAllRemuneration);
 
@@ -16,10 +16,6 @@ module.exports = app => {
     router.delete("/:id", employees.delete);
 
     router.delete("/delete/all", employees.deleteAll);
-
-    router.get("/findcars", employees.findOneCars);
-
-    router.get("/findall/cars", employees.findAllAndCars);
 
     app.use("/api/employees", router);
 };

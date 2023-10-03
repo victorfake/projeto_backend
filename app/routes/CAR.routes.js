@@ -9,7 +9,7 @@ module.exports = app => {
 
     router.get("/findmodel/:model", cars.findByModel);
 
-    router.get("/:id", cars.findOne);
+    router.get("/:id", cars.findOneId);
 
     router.get("/find/Importd", cars.findAllImportd);
 

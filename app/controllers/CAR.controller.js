@@ -94,7 +94,7 @@ exports.update = (req, res) => {
     });
 };
 
-exports.findOne = (req, res) => {
+exports.findOneId = (req, res) => {
     const id = req.params.id;
 
     Car.findByPk(id)

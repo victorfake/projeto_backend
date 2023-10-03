@@ -52,7 +52,7 @@ exports.findOneNames = (req, res) =>{
         })
 };
 
-exports.findOneID = (req, res) =>{
+exports.findOneId = (req, res) =>{
     const id = req.params.id;
 
     Seller.findByPk(id)
@@ -149,7 +149,7 @@ exports.findAllRemuneration = (req, res) =>{
         });
     });
 
-    exports.findOneCars = (res, req) =>{
+    exports.findOneAndCars = (res, req) =>{
         const id = req.params.id;
 
     Seller.findByPk(id, {include: 'cars'})
@@ -158,14 +158,14 @@ exports.findAllRemuneration = (req, res) =>{
             res.send(data);
         } else {
             res.status(400).send({
-                message: `Não foi possivel encontra o funcionario com o id=${id}.`
+                message: `Não foi possivel encontra o veiculos com o id=${id}.`
             });
         };
     })
 
         .catch(err => {
             res.status(500).send({
-                message: "Algum erro ocorreu ao tentar encontra o registro de funcionario com o id=" + id
+                message: "Algum erro ocorreu ao tentar encontra o registro do veiculo com o id=" + id
             })
         })
 };
